@@ -246,7 +246,7 @@ allprojects {
 
 ```javascript
   dependencies {
-             compile 'com.github.boboyuwu:PinnedHeaderItemDecoration:V1.0.2'
+            compile 'com.github.tianyah:grouping:1.0'
          }
 ```
 
