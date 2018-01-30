@@ -231,7 +231,7 @@ public class SingleClickTest {
         for (Object arg : joinPoint.getArgs())
             if (arg instanceof View) view = (View) arg;
         /*
-          如果view不为空的遍历添加的注解
+          如果view不为空
          */
         if (view != null) {
             Object tag = view.getTag(TIME_TAG);
