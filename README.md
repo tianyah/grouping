@@ -182,6 +182,7 @@ LoadingView提供了setEmptyView(View);
         mLoadingView.notifyDataChanged(LoadingView.State.empty);
 ```
 
+
 ####  依赖方式
  ```javascript
 allprojects {
@@ -196,6 +197,69 @@ allprojects {
   dependencies {
              compile 'com.github.boboyuwu:PinnedHeaderItemDecoration:V1.0.2'
          }
+```
+
+#### 如果你需要用到防止重复点击
+```javascript 
+1,在你的根目录build.gradle下添加
+ classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:1.1.0'
+ 
+ 然后在你的 app/build.gradle下加上 apply plugin: 'android-aspectjx'
+ 
+ 在 dependencies下添加一句  compile 'org.aspectj:aspectjrt:1.8.13'
+```
+#### aop用法
+#### 如果你需要用到防止重复点击，新建一个类
+```javascript 
+@Aspect
+public class SingleClickTest {
+
+    private static final int MIN_CLICK_DELAY_TIME = 800;
+    private static int TIME_TAG = R.id.time_click;
+    private static final String TAG="SingleClick";
+    @Pointcut("execution(@com.example.library.callback.MyClick * *(..))")
+    public void methodAnnotated() {
+    }
+
+    @Around("methodAnnotated()")
+    public void aroundJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
+        View view = null;
+        for (Object arg : joinPoint.getArgs())
+            if (arg instanceof View) view = (View) arg;
+        /*
+          如果view不为空的遍历添加的注解
+         */
+        if (view != null) {
+            Object tag = view.getTag(TIME_TAG);
+            long lastClickTime = ((tag != null) ? (long) tag : 0);
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) {
+                view.setTag(TIME_TAG, currentTime);
+                joinPoint.proceed();//执行原方法
+            }
+        }
+    }
+}
+```
+#### 在需要防止重复点击的地方
+```javascript
+
+ 	
+        View.setOnClickListener(new View.OnClickListener() {
+	    // 可以是任何点击事件上加一个注解
+            @MyClick
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+```
+#### 也可以是方法
+```javascript
+ @MyClick
+    public void Test(){
+         Log.i(TAG, "Test: ");
+    }
 ```
 
 #### 接下来你就可以愉快的撸代码了
