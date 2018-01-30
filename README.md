@@ -95,7 +95,48 @@ LoadingView提供了setEmptyView(View);
 
 
   ```
+  
+  #### 头部点击事件
+  
+```javascript
+  OnHeaderClickAdapter clickAdapter = new OnHeaderClickAdapter() {
 
+            @Override
+            public void onHeaderClick(View view, int id, int position) {
+                switch (id) {
+                    case R.id.details_rl:
+                        // case OnItemTouchListener.HEADER_ID:
+                        To.ShowToast(BillActivity.this, "头部年月: " + mAdapter.getData().get(position).billHeaderTime);
+                        Log.i(TAG, "onHeaderClick: " + "支出: " + mAdapter.getData().get(position).spending);
+                        Log.i(TAG, "onHeaderClick: " + "收入: " + mAdapter.getData().get(position).income);
+
+                        break;
+                    case R.id.details_image:
+                        To.ShowToast(BillActivity.this, "点击了时间图标");
+                        break;
+                }
+            }
+        };
+
+
+        PinnedHeaderItemDecoration mHeaderItemDecoration = new PinnedHeaderItemDecoration.
+                Builder(BillkEntity.BillInfo.TYPE_HEADER).setDividerId(R.drawable.divider).enableDivider(true)
+                .setClickIds(R.id.details_image, R.id.details_rl).disableHeaderClick(false)
+                .setHeaderClickListener(clickAdapter)
+                .disableHeaderClick(false)
+                .setHeaderImageListener(new PinnedHeaderItemDecoration.OnHeaderisShowImageLister() {
+                    @Override
+                    public void isShow(View view, int position) {
+                        Log.i(TAG, "isShow: 当前到达顶部的为 : " + position);
+                        ((ImageView) view.findViewById(R.id.details_image)).setVisibility(View.VISIBLE);
+
+                    }
+                })
+                .create();
+        mRecyclerView.addItemDecoration(mHeaderItemDecoration);
+
+
+```
 
 ####  item点击事件
 
@@ -128,8 +169,11 @@ LoadingView提供了setEmptyView(View);
         mHeaderItemDecoration.setDataPositionOffset(mAdapter.getHeaderLayoutCount());
     }
    ```
-    
-    
+ 
+ ### 设置无网络点击事件
+  ```javascript
+  mLoadingView.setOnRetryListener(this);
+  ```
  ####  无网络点击
  
  ```javascript
