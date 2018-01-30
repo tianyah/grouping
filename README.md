@@ -126,10 +126,9 @@ LoadingView提供了setEmptyView(View);
     
     
  ###  无网络点击
- 
  ```javascript
      /**
-     * 无网络点击回掉
+     * 无网络点击回调
      */
     @Override
     public void onRetry() {
@@ -138,67 +137,8 @@ LoadingView提供了setEmptyView(View);
             return;
         }
         initData();
-    }
-     ```
-     
- ###  无数据
-  ```javascript
-        mLoadingView.notifyDataChanged(LoadingView.State.empty);
-        ```
- ###  请求网络数据成功后的回调
- 
-   ```javascript
-  
-    @Override
-    public void onSuccess(String bean) {
-               
-        List<BillkEntity.BillInfo> data = new ArrayList<>();
-        
-        //这里的数据是你实际项目中的数据类型 ，我这里只是解析本地json测试
-        BillkEntity billkEntity = JSONFactory.fromJson(JsonUtils.getJson(this, "rasking.json"), BillkEntity.class);
+} ```
 
+###  无网络点击
+###   接下来在主界面初始化数据 如果你需要当无网络情况显示网络异常，可以用LoadingView   
 
-        data.add(new BillkEntity.BillInfo(BillkEntity.BillInfo.TYPE_HEADER, "2018年1月", "100.01", "28"));
-        for (BillkEntity.BillInfo info : billkEntity.January_list) {
-            info.setItemType(BillkEntity.BillInfo.TYPE_DATA);
-            data.add(info);
-        }
-        data.add(new BillkEntity.BillInfo(BillkEntity.BillInfo.TYPE_HEADER, "2018年12月", "100.02", "27"));
-        for (BillkEntity.BillInfo info : billkEntity.december_list) {
-            info.setItemType(BillkEntity.BillInfo.TYPE_DATA);
-            data.add(info);
-        }
-        data.add(new BillkEntity.BillInfo(BillkEntity.BillInfo.TYPE_HEADER, "2018年11月", "100.03", "26"));
-        for (BillkEntity.BillInfo info : billkEntity.november_list) {
-            info.setItemType(BillkEntity.BillInfo.TYPE_DATA);
-            data.add(info);
-        }
-        data.add(new BillkEntity.BillInfo(BillkEntity.BillInfo.TYPE_HEADER, "2018年10月", "100.04", "25"));
-        for (BillkEntity.BillInfo info : billkEntity.october_list) {
-            info.setItemType(BillkEntity.BillInfo.TYPE_DATA);
-            data.add(info);
-        }
-        mAdapter = new BillAdapter(data);
-        mRecyclerView.setAdapter(mAdapter);
-
-    }
-     ```
-    
-    
-    依赖方式
-    
-    ...
-    allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		   }
-	    }
-            
-            dependencies {
-             compile 'com.github.boboyuwu:PinnedHeaderItemDecoration:V1.0.2'
-         }
-            
-            ...
-            
-            接下来你就可以愉快的敲代码了~
