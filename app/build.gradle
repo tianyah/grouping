@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-aspectjx'
+aspectjx {
+    //织入遍历符合条件的库
+    includeJarFilter 'universal-image-loader', 'AspectJX-Demo/library'
+    //排除包含‘universal-image-loader’的库
+    excludeJarFilter 'universal-image-loader'
+}
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.example.tr.myapplication"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.aspectj:aspectjrt:1.8.13'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:support-annotations:27.0.2'
+    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-5'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+    /*rotrofit*/
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    //Rx的包
+    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.trello:rxlifecycle-components:1.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
+    implementation project(':library')
+}

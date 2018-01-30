@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".view.BillActivity">
+    <item
+        android:id="@+id/to_bill"
+        android:orderInCategory="100"
+        android:title="账单明细demo"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/no_data"
+        android:orderInCategory="100"
+        android:title="无数据"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/to_data"
+        android:orderInCategory="100"
+        android:title="加载数据"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/network_err"
+        android:orderInCategory="100"
+        android:title="网络异常"
+        app:showAsAction="never"/>
+
+
+</menu>

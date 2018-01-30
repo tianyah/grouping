@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/details_item_r"
+    android:layout_height="wrap_content"
+    android:background="@drawable/touch_bg"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:background="@drawable/touch_bg"
+        android:id="@+id/details_rl"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp">
+
+
+        <TextView
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/touch_bg"
+            android:id="@+id/trading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="111"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:textSize="16sp"
+            android:background="@drawable/touch_bg"
+            android:id="@+id/details_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trading"
+            android:layout_marginTop="5dp"
+            android:text="111"
+            android:textColor="@color/nativeColor"
+             />
+
+        <TextView
+            android:background="@drawable/touch_bg"
+            android:id="@+id/details_item_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:text="11111"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+    <!--<View-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_below="@id/details_rl"-->
+        <!--android:background="@color/Line" />-->
+
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/details_rl"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#eff0f4">
+
+        <TextView
+            android:id="@+id/item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="2017年11月"
+            android:textColor="#000000"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/spending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_time"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="支出¥612.55"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_time"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="8dp"
+            android:text="收入¥616.55"
+            android:textSize="13dp" />
+
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/details_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/calendar" />
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
