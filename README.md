@@ -12,10 +12,11 @@ Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
 ...public static class BillInfo implements MultiItemEntity ...
 
 
-... 
-/**
- * 直接继承BaseMultiItemQuickAdapter单独实现一个适配器的写法
- */
+```javascript
+
+    
+  //直接继承BaseMultiItemQuickAdapter单独实现一个适配器的写法
+
 public class BillAdapter extends BaseMultiItemQuickAdapter<BillkEntity.BillInfo, BaseViewHolder> {
 
     public BillAdapter(List<BillkEntity.BillInfo> data) {
@@ -43,13 +44,18 @@ public class BillAdapter extends BaseMultiItemQuickAdapter<BillkEntity.BillInfo,
 
                 helper.setText(R.id.trading, item.getBill_name());
                 
-//                helper.setText(R.id.details_time, StringUtils.getStrTime(item.getCreated_at()));
+                //helper.setText(R.id.details_time, StringUtils.getStrTime(item.getCreated_at()));
                 helper.setText(R.id.details_time, item.getCreated_at());
-                if (item.getMode().equals("0")) {                  ((TextView)helper.getView(R.id.details_item_amount)).setTextColor(mContext.getResources().getColor(R.color.details_text));
+                if (item.getMode().equals("0")) {                  
+                    ((TextView)helper.getView(R.id.details_item_amount)).
+                    setTextColor(mContext.getResources().getColor(R.color.details_text));
+                    
                     helper.setText(R.id.details_item_amount, "+" + item.getAmount());
                 }
                 if (item.getMode().equals("1")) {
-                    ((TextView) helper.getView(R.id.details_item_amount)).setTextColor(mContext.getResources().getColor(R.color.black));
+                    ((TextView) helper.getView(R.id.details_item_amount)).
+                    setTextColor(mContext.getResources().getColor(R.color.black));
+                    
                     helper.setText(R.id.details_item_amount, "-" + item.getAmount());
                 }
                 helper.addOnClickListener(R.id.details_item_r);
@@ -58,7 +64,9 @@ public class BillAdapter extends BaseMultiItemQuickAdapter<BillkEntity.BillInfo,
 
         }
     }
-}...
+}
+
+```
 
 
 接下来在主界面初始化数据 如果你需要当无网络情况显示网络异常，可以用LoadingView
