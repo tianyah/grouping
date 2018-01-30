@@ -6,7 +6,14 @@ Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
 
 
 
-怎么用？
+
+
+
+
+ 		### 怎么用？
+		
+		
+		
 
 你的实体类需要实现MultiItemEntity接口
 ...public static class BillInfo implements MultiItemEntity ...
