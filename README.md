@@ -1,8 +1,9 @@
 # grouping
 Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
 
-话不多说先看效果
-![image](https://github.com/tianyah/grouping/blob/master/pic/GIF.gif) 
+## 话不多说先看效果
+<br/>![image](https://github.com/tianyah/grouping/blob/master/pic/GIF.gif) </br>
+
 
 
 
@@ -13,7 +14,7 @@ Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
 >
 >
 >
- # 怎么用？
+ #                                          怎么用？
 >
 >
 		
