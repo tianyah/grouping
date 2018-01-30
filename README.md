@@ -58,9 +58,8 @@ public class BillAdapter extends BaseMultiItemQuickAdapter<BillkEntity.BillInfo,
 
         }
     }
+}...
 
-}
-...
 
 接下来在主界面初始化数据 如果你需要当无网络情况显示网络异常，可以用LoadingView
 LoadingView提供了setEmptyView(View);
