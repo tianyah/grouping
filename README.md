@@ -214,7 +214,7 @@ allprojects {
  在 dependencies下添加一句  compile 'org.aspectj:aspectjrt:1.8.13'
 ```
 #### aop用法
-#### 如果你需要用到防止重复点击，新建一个类
+#### 如果你需要用到防止重复点击，新建一个类 ，当然这个点击逻辑你可以自己定义
 ```javascript 
 @Aspect
 public class SingleClickTest {
