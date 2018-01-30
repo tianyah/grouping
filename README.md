@@ -307,7 +307,7 @@ public class SingleClickTest {
 ```
 #### 也可以是方法
 ```javascript
- @MyClick
+    @MyClick
     public void Test(){
          Log.i(TAG, "Test: ");
     }
