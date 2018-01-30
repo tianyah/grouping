@@ -12,7 +12,7 @@ Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
 
 			
 
-## 你的实体类需要实现MultiItemEntity接口
+## 1.你的实体类需要实现MultiItemEntity接口
 
 
 ```javascript 
@@ -20,6 +20,8 @@ public static class BillInfo implements MultiItemEntity
 ```
 
 
+
+## 2.你需要写一个适配器继承BaseMultiItemQuickAdapter
 ```javascript
 
     
