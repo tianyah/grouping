@@ -121,6 +121,7 @@ LoadingView提供了setEmptyView(View);
 
         PinnedHeaderItemDecoration mHeaderItemDecoration = new PinnedHeaderItemDecoration.
                 Builder(BillkEntity.BillInfo.TYPE_HEADER).setDividerId(R.drawable.divider).enableDivider(true)
+		//这里传入的id，就是你头部的控件id
                 .setClickIds(R.id.details_image, R.id.details_rl).disableHeaderClick(false)
                 .setHeaderClickListener(clickAdapter)
                 .disableHeaderClick(false)
