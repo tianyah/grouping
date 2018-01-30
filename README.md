@@ -127,6 +127,7 @@ LoadingView提供了setEmptyView(View);
                 .setHeaderImageListener(new PinnedHeaderItemDecoration.OnHeaderisShowImageLister() {
                     @Override
                     public void isShow(View view, int position) {
+		    	//这个view可以拿到你头部的任何控件
                         Log.i(TAG, "isShow: 当前到达顶部的为 : " + position);
                         ((ImageView) view.findViewById(R.id.details_image)).setVisibility(View.VISIBLE);
 
