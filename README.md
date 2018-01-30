@@ -12,7 +12,7 @@ Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
 
 			
 
-### 1.你的实体类需要实现MultiItemEntity接口
+#### 1. 你的实体类需要实现MultiItemEntity接口
 
 
 ```javascript 
@@ -21,7 +21,8 @@ public static class BillInfo implements MultiItemEntity
 
 
 
-### 2.你需要写一个适配器继承BaseMultiItemQuickAdapter
+#### 2. 你需要写一个适配器继承BaseMultiItemQuickAdapter
+
 ```javascript
 
     
@@ -78,58 +79,22 @@ public class BillAdapter extends BaseMultiItemQuickAdapter<BillkEntity.BillInfo,
 
 ```
 
+####  接下来在主界面初始化数据 如果你需要当无网络情况显示网络异常，可以用LoadingView
 
-接下来在主界面初始化数据 如果你需要当无网络情况显示网络异常，可以用LoadingView
+```javascript
+  mPresenter.getBillData(); 
+  
 LoadingView提供了setEmptyView(View);
                 setErrView(View);
                 setOnRetryListener(View);
 
-...  mPresenter.getBillData(); ...
 
-事件
-... 
-    @Override
-    protected void initEvent() {
-        mLoadingView.setOnRetryListener(this);
+  ```
 
-        //头部点击事件
-        OnHeaderClickAdapter clickAdapter = new OnHeaderClickAdapter() {
 
-            @Override
-            public void onHeaderClick(View view, int id, int position) {
-                switch (id) {
-                    case R.id.details_rl:
-                        // case OnItemTouchListener.HEADER_ID:
-                        To.ShowToast(BillActivity.this, "头部年月: " + mAdapter.getData().get(position).billHeaderTime);
-                        Log.i(TAG, "onHeaderClick: " + "支出: " + mAdapter.getData().get(position).spending);
-                        Log.i(TAG, "onHeaderClick: " + "收入: " + mAdapter.getData().get(position).income);
+#### item 点击事件
 
-                        break;
-                    case R.id.details_image:
-                        To.ShowToast(BillActivity.this, "点击了时间图标");
-                        break;
-                }
-            }
-        };
-        
-        PinnedHeaderItemDecoration mHeaderItemDecoration = new PinnedHeaderItemDecoration.
-                Builder(BillkEntity.BillInfo.TYPE_HEADER).setDividerId(R.drawable.divider).enableDivider(true)
-                .setClickIds(R.id.details_image, R.id.details_rl).disableHeaderClick(false)
-                .setHeaderClickListener(clickAdapter)
-                .disableHeaderClick(false)
-                .setHeaderImageListener(new PinnedHeaderItemDecoration.OnHeaderisShowImageLister() {
-                    @Override
-                    public void isShow(View view, int position) {
-                        Log.i(TAG, "isShow: 当前到达顶部的为 : " + position);
-                        //这是当头部到底顶部的时候 这里可以做其它你想做的操作，view可以拿到你头部的任何控件
-                        ((ImageView) view.findViewById(R.id.details_image)).setVisibility(View.VISIBLE);
-
-                    }
-                })
-                .create();
-        mRecyclerView.addItemDecoration(mHeaderItemDecoration);
-
-        //item 点击事件
+```javascript
         mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
 
             @Override
@@ -140,7 +105,9 @@ LoadingView提供了setEmptyView(View);
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.details_item_r) {
-                    To.ShowToast(BillActivity.this, "点击了类型二条目的类型为: " + mAdapter.getData(). get(position).getCreated_at());  
+                    To.ShowToast(BillActivity.this, "点击了类型二条目的类型为: " +
+                    mAdapter.getData(). get(position).getCreated_at());  
+                    
                     Log.i("BaseActivity", "onItemChildClick: " + position);
                 }
             }
@@ -155,9 +122,13 @@ LoadingView提供了setEmptyView(View);
         // 因为添加了1个头部，他是不在clickAdapter.getData这个数据里面的，所以这里要设置数据的偏移值告知ItemDecoration真正的数据索引
         mHeaderItemDecoration.setDataPositionOffset(mAdapter.getHeaderLayoutCount());
     }
-    ...
+   ```
     
-    ...   /**
+    
+ ###  无网络点击
+ 
+ ```javascript
+     /**
      * 无网络点击回掉
      */
     @Override
@@ -168,16 +139,16 @@ LoadingView提供了setEmptyView(View);
         }
         initData();
     }
-    ...
-    
-    ... 
-    //没有数据
+     ```
+     
+ ###  无数据
+  ```javascript
         mLoadingView.notifyDataChanged(LoadingView.State.empty);
-        ...
-    
-    //请求网络数据成功后的回调
-    
-    ...
+        ```
+ ###  请求网络数据成功后的回调
+ 
+   ```javascript
+  
     @Override
     public void onSuccess(String bean) {
                
@@ -207,14 +178,11 @@ LoadingView提供了setEmptyView(View);
             info.setItemType(BillkEntity.BillInfo.TYPE_DATA);
             data.add(info);
         }
-
-
         mAdapter = new BillAdapter(data);
         mRecyclerView.setAdapter(mAdapter);
 
     }
-    ...
-    
+     ```
     
     
     依赖方式
