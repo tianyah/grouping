@@ -87,7 +87,8 @@ public class BillAdapter extends BaseMultiItemQuickAdapter<BillkEntity.BillInfo,
   
 LoadingView提供了setEmptyView(View);
                 setErrView(View);
-                setOnRetryListener(View);
+		setLoadingView(View);
+                setOnRetryListener(this);
 默认使用 : mLoadingView.notifyDataChanged(LoadingView.State.error);
           mLoadingView.notifyDataChanged(LoadingView.State.done);
           mLoadingView.notifyDataChanged(LoadingView.State.empty);
