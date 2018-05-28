@@ -254,11 +254,10 @@ allprojects {
 #### 如果你需要用到防止重复点击
 ```javascript 
 1,在你的根目录build.gradle下添加
- classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:1.1.0'
+ classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0'
  
  然后在你的 app/build.gradle下加上 apply plugin: 'android-aspectjx'
  
- 在 dependencies下添加一句  compile 'org.aspectj:aspectjrt:1.8.13'
 ```
 #### aop用法
 #### 如果你需要用到防止重复点击，新建一个类 ，当然这个点击逻辑你可以自己定义
