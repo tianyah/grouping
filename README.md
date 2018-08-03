@@ -11,7 +11,7 @@ Rxjava+Retrofit+MVP+AOP 类似支付宝微信账单明细列表
  #                                          怎么用？
 
 
-###  准备工作 ： 你先要引用BaseRecyclerViewAdapterHelper 这个神库
+###  准备工作 ： 你先要引用BaseRecyclerViewAdapterHelper 库
 
 #### 1. 你的实体类需要实现MultiItemEntity接口
 
