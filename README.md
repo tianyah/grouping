@@ -126,6 +126,8 @@ LoadingView提供了setEmptyView(View);
                 .setClickIds(R.id.details_image, R.id.details_rl).disableHeaderClick(false)
                 .setHeaderClickListener(clickAdapter)
                 .disableHeaderClick(false)
+		 //是否开启回弹效果,true 默认开启
+                .setSpringback(false)
                 .setHeaderImageListener(new PinnedHeaderItemDecoration.OnHeaderisShowImageLister() {
                     @Override
                     public void isShow(View view, int position) {
