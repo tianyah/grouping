@@ -79,6 +79,7 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
     private boolean mT;
     private OnHeaderisShowImageLister mOnisShowImageListener;
     private RecyclerView mParent;
+	private boolean mSpringback;
 
     // 当我们调用mRecyclerView.addItemDecoration()方法添加decoration的时候，RecyclerView在绘制的时候，去会绘制decorator，即调用该类的onDraw和onDrawOver方法，
     // 1.onDraw方法先于drawChildren
@@ -93,6 +94,7 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
         mOnisShowImageListener = builder.headerisShowImageLister;
         mDisableHeaderClick = builder.disableHeaderClick;
         mPinnedHeaderType = builder.pinnedHeaderType;
+		mSpringback = builder.springback;
     }
 
     public interface OnHeaderisShowImageLister{
@@ -245,7 +247,12 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
             // 因此,只绘制(0,0,parent.getWidth(),belowView.getTop())这个范围，然后画布移动了mPinnedHeaderTop，所以刚好是绘制顶部标签移动的范围
             // 低版本不行，换回Region.Op.UNION并集
             c.clipRect(mClipBounds, Region.Op.UNION);
-            c.translate(mRecyclerViewPaddingLeft + mHeaderLeftMargin, mPinnedHeaderOffset + mRecyclerViewPaddingTop + mHeaderTopMargin);
+			
+			if(mSpringback){
+				c.translate(mRecyclerViewPaddingLeft + mHeaderLeftMargin, mPinnedHeaderOffset + mRecyclerViewPaddingTop + mHeaderTopMargin);
+			}else{
+				c.translate(mRecyclerViewPaddingLeft + mHeaderLeftMargin, 0);
+			}
             mPinnedHeaderView.draw(c);
 
             c.restore();
@@ -596,6 +603,8 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
         private int[] clickIds;
 
         private boolean disableHeaderClick;
+		
+		private boolean springback = true;
 
         private int pinnedHeaderType;
 
@@ -653,6 +662,19 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
             this.clickIds = clickIds;
             return this;
         }
+		
+		
+		 /**
+         * 是否回弹效果
+         *
+         * @param springback 默认开启
+         * @return 构建者
+         */
+		public Builder setSpringback(boolean springback) {
+            this.springback = springback;
+            return this;
+        }
+
 
         /**
          * 是否关闭标签点击事件，默认开启
