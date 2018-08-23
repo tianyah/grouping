@@ -605,6 +605,7 @@ public class PinnedHeaderItemDecoration extends RecyclerView.ItemDecoration {
         private boolean disableHeaderClick;
 		
 		private boolean springback = true;
+		
 
         private int pinnedHeaderType;
 
